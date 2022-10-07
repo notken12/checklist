@@ -2,8 +2,8 @@
 	import { type Id } from '$lib/types';
 	import type { UserData } from '$lib/types';
 	import { onMount } from 'svelte';
-	import List from '$lib/List.svelte';
 	import { dataSource, user } from '$lib/stores';
+	import SideNav from '$lib/SideNav.svelte';
 
 	let newUsername = '';
 
@@ -50,14 +50,11 @@
 {#if !$dataSource.initialized}
 	<p>Loading...</p>
 {:else if $user}
-	<h1>
-		hi {$user.name}
-	</h1>
-	{#each $user.lists as list}
-		<List {list} />
-	{/each}
-	<br />
-	<button on:click={deleteUser}>Delete {$user.name}</button>
+	<SideNav user={$user} />
+
+	<main>
+		<button on:click={deleteUser}>Delete {$user.name}</button>
+	</main>
 {:else}
 	<!-- TODO: add login form -->
 	<form

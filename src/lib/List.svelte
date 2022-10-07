@@ -1,14 +1,15 @@
 <script lang="ts">
-	import { dataSource, user } from './stores';
+	import { dataSource } from './stores';
 
-	import type { List } from './types';
+	import type { List, UserData } from './types';
 
 	export let list: List;
+	export let user: UserData;
 	let newItemTitle = '';
 
 	const newItem = async () => {
 		list.items.push({ id: list.items.length.toString(), name: newItemTitle });
-		$dataSource.write($user);
+		$dataSource.write(user);
 	};
 </script>
 
