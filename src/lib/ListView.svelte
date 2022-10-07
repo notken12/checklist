@@ -16,6 +16,42 @@
 		if (updated) list = updated;
 		$dataSource.write(user);
 	};
+
+	let firstDay = list.days[0]?.date || new Date();
+	firstDay.setHours(0, 0, 0, 0);
+
+	const getTotalDays = () => {
+		let date = new Date();
+		date.setHours(0, 0, 0, 0);
+		return Math.floor((date.getTime() - firstDay.getTime()) / (1000 * 3600 * 24));
+	};
+
+	let totalDays = getTotalDays();
+
+	type DayColumn = {
+		index: number | null;
+		date: Date;
+	};
+	const getDays = (): DayColumn[] => {
+		const days: DayColumn[] = [];
+		let i = 0;
+		for (let j = 0; j <= getTotalDays(); j++) {
+			let date = firstDay.getTime() + j * 1000 * 3600 * 24;
+			if (list.days[i]?.date.getTime() === date) {
+				days.push({ index: i, date: new Date(date) });
+			} else {
+				days.push({ index: null, date: new Date(date) });
+			}
+		}
+		return days;
+	};
+
+	let days: DayColumn[];
+	$: {
+		days = getDays();
+		firstDay;
+		list.days;
+	}
 </script>
 
 <section>
@@ -24,9 +60,16 @@
 		<IconButton>add</IconButton>
 	</header>
 	<section class="main">
+		<p>{totalDays}</p>
 		<table>
 			<tbody>
-				{#each list.items as item}
+				<tr>
+					<th />
+					{#each days as day}
+						<th>{day.date.toLocaleString().split(',')[0]}</th>
+					{/each}
+				</tr>
+				{#each list.items as item (item.id)}
 					<tr>
 						<th>{item.name}</th>
 					</tr>
@@ -54,6 +97,7 @@
 		width: 100%;
 		border-bottom: var(--base03) solid 1px;
 		align-items: center;
+		background: var(--base00);
 	}
 
 	.main {

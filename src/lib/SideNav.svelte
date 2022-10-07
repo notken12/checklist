@@ -15,7 +15,7 @@
 </script>
 
 <nav>
-	{#each user.lists as list}
+	{#each user.lists as list (list.id)}
 		<h1>
 			hi {user.name}
 		</h1>
