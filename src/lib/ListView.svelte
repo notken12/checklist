@@ -1,7 +1,8 @@
 <script lang="ts">
+	import Checkbox from './Checkbox.svelte';
 	import { dataSource } from './stores';
 
-	import { addItemToList, type List, type UserData } from './types';
+	import { addItemToList, type List, type UserData, type Day } from './types';
 	import IconButton from './ui/IconButton.svelte';
 
 	export let list: List;
@@ -23,7 +24,7 @@
 	const getTotalDays = () => {
 		let date = new Date();
 		date.setHours(0, 0, 0, 0);
-		return Math.floor((date.getTime() - firstDay.getTime()) / (1000 * 3600 * 24));
+		return Math.floor((date.getTime() - firstDay.getTime()) / (1000 * 3600 * 24)) + 1;
 	};
 
 	let totalDays = getTotalDays();
@@ -35,7 +36,7 @@
 	const getDays = (): DayColumn[] => {
 		const days: DayColumn[] = [];
 		let i = 0;
-		for (let j = 0; j <= getTotalDays(); j++) {
+		for (let j = 0; j < getTotalDays(); j++) {
 			let date = firstDay.getTime() + j * 1000 * 3600 * 24;
 			if (list.days[i]?.date.getTime() === date) {
 				days.push({ index: i, date: new Date(date) });
@@ -52,6 +53,11 @@
 		firstDay;
 		list.days;
 	}
+
+	const getDay = (day: DayColumn): Day => {
+		if (day.index != null) return list.days[day.index];
+		return { date: day.date, completed: {} };
+	};
 </script>
 
 <section>
@@ -60,7 +66,6 @@
 		<IconButton>add</IconButton>
 	</header>
 	<section class="main">
-		<p>{totalDays}</p>
 		<table>
 			<tbody>
 				<tr>
@@ -72,6 +77,9 @@
 				{#each list.items as item (item.id)}
 					<tr>
 						<th>{item.name}</th>
+						{#each days as day}
+							<Checkbox {user} {list} {item} day={getDay(day)} />
+						{/each}
 					</tr>
 				{/each}
 			</tbody>

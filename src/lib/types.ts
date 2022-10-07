@@ -128,3 +128,15 @@ export const addItemToList = (user: UserData, listId: Id, item: Item) => {
   list?.items.push(item);
   return list
 }
+
+export const updateItem = (user: UserData, listId: Id, itemId: Id, newItem: Partial<Item>) => {
+  const list =
+    user.lists
+      .find((l) => l.id === listId);
+  const item = list?.items.find(i => i.id === itemId)
+  if (item)
+    Object.assign(item, newItem);
+  return item
+}
+
+// export const setItemState = (user: UserData, listId: Id, itemId: Id, newItem: Partial<Item>) => {
