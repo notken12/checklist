@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { type Id } from '$lib/types';
+	import { type Id, type List } from '$lib/types';
 	import type { UserData } from '$lib/types';
 	import { onMount } from 'svelte';
 	import { dataSource, user } from '$lib/stores';
 	import SideNav from '$lib/SideNav.svelte';
+	import Main from '$lib/Main.svelte';
 
 	let newUsername = '';
 
@@ -41,20 +42,19 @@
 		if (readResult) $user = readResult;
 	};
 
-	const deleteUser = async () => {
-		await $dataSource.delete();
-		$user = null;
+	let currentList: List | null;
+
+	const selectList = (list: CustomEvent<List>) => {
+		currentList = list.detail;
 	};
 </script>
 
 {#if !$dataSource.initialized}
 	<p>Loading...</p>
 {:else if $user}
-	<SideNav user={$user} />
+	<SideNav user={$user} on:selectlist={selectList} />
 
-	<main>
-		<button on:click={deleteUser}>Delete {$user.name}</button>
-	</main>
+	<Main user={$user} list={currentList} />
 {:else}
 	<!-- TODO: add login form -->
 	<form

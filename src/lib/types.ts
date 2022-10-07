@@ -120,3 +120,11 @@ export class IDBDataSource<T> implements DataSource<T> {
       this.callback(val);
   }
 }
+
+export const addItemToList = (user: UserData, listId: Id, item: Item) => {
+  const list =
+    user.lists
+      .find((l) => l.id === listId);
+  list?.items.push(item);
+  return list
+}
