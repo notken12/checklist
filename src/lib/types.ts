@@ -139,4 +139,30 @@ export const updateItem = (user: UserData, listId: Id, itemId: Id, newItem: Part
   return item
 }
 
-// export const setItemState = (user: UserData, listId: Id, itemId: Id, newItem: Partial<Item>) => {
+// Function to find insert position of K
+export const find_index = <T>(arr: T[], K: T, cmp: (a: T, b: T) => number) => {
+  // Traverse the array
+  for (let i = 0; i < arr.length; i++)
+    // If K is found
+    if (cmp(arr[i], K) === 0) return { index: i, match: true };
+    // If current array element
+    // exceeds K
+    else if (cmp(arr[i], K) > 0) return { index: i, match: false };
+
+  // If all elements are smaller
+  // than K
+  return { index: arr.length, match: false };
+}
+
+export const setDayState = (user: UserData, listId: Id, newDay: Day) => {
+  const list =
+    user.lists
+      .find((l) => l.id === listId);
+  if (!list) throw new Error()
+  const { index, match } = find_index(list.days, newDay, (a, b) => a.date.getTime() - b.date.getTime());
+  if (match) {
+    Object.assign(list.days[index].completed, newDay.completed)
+  }
+  else list.days.splice(index, 0, newDay);
+  return { newDay: list.days[index], newUser: user }
+}

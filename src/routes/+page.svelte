@@ -14,8 +14,6 @@
 		$dataSource.subscribe((data) => {
 			$user = data;
 		});
-
-		console.log($user);
 	};
 
 	onMount(async () => {
