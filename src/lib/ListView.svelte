@@ -40,6 +40,7 @@
 			let date = firstDay.getTime() + j * 1000 * 3600 * 24;
 			if (list.days[i]?.date.getTime() === date) {
 				days.push({ index: i, date: new Date(date) });
+				i++;
 			} else {
 				days.push({ index: null, date: new Date(date) });
 			}
@@ -52,6 +53,7 @@
 		days = getDays();
 		firstDay;
 		list.days;
+		console.log(days);
 	}
 
 	const getDay = (day: DayColumn): Day => {
