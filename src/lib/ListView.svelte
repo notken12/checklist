@@ -84,6 +84,9 @@
 						{/each}
 					</tr>
 				{/each}
+				<tr>
+					<th>New item</th>
+				</tr>
 			</tbody>
 		</table>
 		<button on:click={newItem}> New item </button>
@@ -100,8 +103,9 @@
 		flex-grow: 1;
 		height: 100%;
 		max-height: 100%;
-		overflow-y: auto;
+		width: 100%;
 		max-width: 100%;
+		overflow-y: auto;
 		overflow-x: auto;
 	}
 
