@@ -16,10 +16,10 @@
 	export let selected: Id | null = null;
 </script>
 
-<nav>
+<nav class="side-nav">
 	{#each user.lists as list (list.id)}
 		<h1>
-			hi {user.name}
+			Hi {user.name}
 		</h1>
 
 		<ListItem on:click={() => dispatch('selectlist', list)} selected={list.id === selected}

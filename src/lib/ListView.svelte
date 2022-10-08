@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	import Checkbox from './Checkbox.svelte';
 	import { dataSource } from './stores';
 
@@ -15,6 +16,7 @@
 			name: newItemTitle
 		});
 		if (updated) list = updated;
+		newItemTitle = '';
 		$dataSource.write(user);
 	};
 
@@ -60,12 +62,17 @@
 		if (day.index != null) return list.days[day.index];
 		return { date: day.date, completed: {} };
 	};
+
+	let newItemInput: HTMLInputElement;
+
+	const dispatch = createEventDispatcher<{ back: void }>();
 </script>
 
 <section>
 	<header>
+		<IconButton on:click={() => dispatch('back')} back>arrow_back</IconButton>
 		<h2>{list.name}</h2>
-		<IconButton>add</IconButton>
+		<IconButton on:click={() => newItemInput.focus()}>format_list_bulleted_add</IconButton>
 	</header>
 	<section class="main">
 		<table>
@@ -85,12 +92,27 @@
 					</tr>
 				{/each}
 				<tr>
-					<th>New item</th>
+					<th>
+						<form
+							on:submit={(e) => {
+								e.preventDefault();
+								newItem();
+							}}
+						>
+							<input
+								type="text"
+								placeholder="New item"
+								bind:value={newItemTitle}
+								bind:this={newItemInput}
+							/>
+						</form>
+					</th>
+					<td class="hint" colspan="100">
+						{!newItemTitle ? '' : 'Hit <Enter> to create'}
+					</td>
 				</tr>
 			</tbody>
 		</table>
-		<button on:click={newItem}> New item </button>
-		<input type="text" placeholder="Item" bind:value={newItemTitle} />
 	</section>
 </section>
 
@@ -112,7 +134,8 @@
 	header {
 		display: flex;
 		gap: 8px;
-		padding: 8px 16px;
+		padding: 8px 8px;
+		padding-left: 16px;
 		height: 64px;
 		width: 100%;
 		border-bottom: var(--base03) solid 1px;
@@ -126,5 +149,24 @@
 
 	h2 {
 		flex-grow: 1;
+	}
+
+	input {
+		background: none;
+		border: none;
+		outline: none;
+		font-size: 17px;
+		font-weight: 700;
+	}
+
+	.hint {
+		opacity: 0.7;
+		font-family: 'Space Mono', monospace;
+		line-height: 17px;
+		font-size: 16px;
+		user-select: none;
+	}
+
+	@media only screen and (max-width: 600px) {
 	}
 </style>

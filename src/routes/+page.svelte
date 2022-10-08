@@ -29,8 +29,8 @@
 			lists: [
 				{
 					id: '123',
-					name: 'a list',
-					items: [{ id: '0', name: 'dog' }],
+					name: 'My list',
+					items: [],
 					days: [{ date: new Date(2022, 9, 3), completed: {} }]
 				}
 			]
@@ -51,9 +51,11 @@
 {#if !$dataSource.initialized}
 	<p>Loading...</p>
 {:else if $user}
-	<SideNav user={$user} on:selectlist={selectList} selected={currentList?.id} />
+	<div class="view" class:viewing-list={currentList != null}>
+		<SideNav user={$user} on:selectlist={selectList} selected={currentList?.id} />
 
-	<Main user={$user} list={currentList} />
+		<Main user={$user} list={currentList} on:back={() => (currentList = null)} />
+	</div>
 {:else}
 	<!-- TODO: add login form -->
 	<form
@@ -67,3 +69,12 @@
 		<button type="submit">Submit</button>
 	</form>
 {/if}
+
+<style>
+	.view {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		height: 100%;
+	}
+</style>

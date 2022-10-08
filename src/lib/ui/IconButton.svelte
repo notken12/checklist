@@ -1,4 +1,8 @@
-<button class="material-symbols-outlined">
+<script lang="ts">
+	export let back = false;
+</script>
+
+<button class="material-symbols-outlined" on:click class:back>
 	<slot />
 </button>
 
@@ -15,5 +19,9 @@
 
 	button:hover {
 		background: #ffffff22;
+	}
+
+	.back {
+		margin-left: -8px;
 	}
 </style>
