@@ -138,4 +138,40 @@ table {
 
 button {
 	transition: background-color 0.2s;
+	/* background: var(--base01); */
+	background: none;
+	border: none;
+	font-size: 17px;
+	padding: 8px 10px;
+	border-radius: 6px;
+	cursor: pointer;
+	color: var(--base0D);
+	/* font-family: 'Space Mono', monospace; */
+	/* font-size: 16px; */
+	line-height: 17px;
+	display: flex;
+	border: var(--base03) 1px solid;
+}
+
+button:hover {
+	background: var(--base01);
+}
+
+button:active {
+	background: var(--base04);
+}
+
+input {
+	padding: 8px;
+	margin: 0;
+	background: var(--base01);
+	border-radius: 6px;
+	border: none;
+	outline: none;
+}
+
+input:active,
+input:focus,
+input:hover {
+	background: var(--base02);
 }

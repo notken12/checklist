@@ -66,7 +66,7 @@
 		}}
 	>
 		<h2>Hi whats your name?</h2>
-		<input type="text" bind:value={newUsername} />
+		<input type="text" bind:value={newUsername} placeholder="Your name" />
 		<button type="submit">Submit</button>
 	</form>
 {/if}
@@ -77,5 +77,15 @@
 		flex-direction: row;
 		width: 100%;
 		height: 100%;
+	}
+
+	form {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		width: 100%;
+		height: 100%;
+		justify-content: center;
+		align-items: center;
 	}
 </style>

@@ -10,7 +10,7 @@
 	li {
 		list-style: none;
 		background: var(--base01);
-		padding: 6px 10px;
+		padding: 8px 10px;
 		border-radius: 6px;
 		width: 100%;
 		cursor: pointer;

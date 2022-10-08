@@ -9,6 +9,7 @@
 
 	const deleteUser = async () => {
 		await $dataSource.delete();
+		location.reload();
 	};
 
 	const dispatch = createEventDispatcher<{ selectlist: List }>();
@@ -26,7 +27,7 @@
 			>{list.name}</ListItem
 		>
 	{/each}
-	<button on:click={deleteUser}>Delete {user.name}</button>
+	<button on:click={deleteUser}>Delete my data</button>
 </nav>
 
 <style>
