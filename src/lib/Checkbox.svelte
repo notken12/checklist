@@ -19,4 +19,14 @@
 	};
 </script>
 
-<td on:click={() => setState(!completed)}>{completed}</td>
+<td on:click={() => setState(!completed)} class:completed />
+
+<style>
+	td {
+		background: var(--incomplete);
+	}
+
+	.completed {
+		background: var(--completed);
+	}
+</style>

@@ -24,6 +24,9 @@
 	--base0D: #7e9cd8;
 	--base0E: #9c86bf;
 	--base0F: #d8616b;
+	/* --incomplete: #d8616b; */
+	--incomplete: transparent;
+	--completed: #98bb6c;
 	margin: 0;
 	min-width: 100%;
 	min-height: 100%;
