@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { List, UserData } from './types';
+	import type { Id, List, UserData } from './types';
 	import { dataSource } from '$lib/stores';
 
 	import ListItem from '$lib/ui/ListItem.svelte';
@@ -12,6 +12,8 @@
 	};
 
 	const dispatch = createEventDispatcher<{ selectlist: List }>();
+
+	export let selected: Id | null = null;
 </script>
 
 <nav>
@@ -20,7 +22,9 @@
 			hi {user.name}
 		</h1>
 
-		<ListItem on:click={() => dispatch('selectlist', list)}>{list.name}</ListItem>
+		<ListItem on:click={() => dispatch('selectlist', list)} selected={list.id === selected}
+			>{list.name}</ListItem
+		>
 	{/each}
 	<button on:click={deleteUser}>Delete {user.name}</button>
 </nav>

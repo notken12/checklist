@@ -112,34 +112,6 @@
 		padding: 16px;
 	}
 
-	table,
-	th,
-	td {
-		border: var(--base03) solid 1px;
-		gap: 0;
-		padding: 0;
-		margin: 0;
-	}
-
-	tbody,
-	tr {
-		padding: 0;
-		margin: 0;
-		gap: 0;
-		border: none;
-	}
-
-	th,
-	td {
-		padding: 8px;
-		font-size: 17px;
-		font-weight: normal;
-	}
-
-	table {
-		border-collapse: collapse;
-	}
-
 	h2 {
 		flex-grow: 1;
 	}

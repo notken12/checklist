@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { type Id, type List } from '$lib/types';
+	import type { List } from '$lib/types';
 	import type { UserData } from '$lib/types';
 	import { onMount } from 'svelte';
 	import { dataSource, user } from '$lib/stores';
@@ -50,7 +50,7 @@
 {#if !$dataSource.initialized}
 	<p>Loading...</p>
 {:else if $user}
-	<SideNav user={$user} on:selectlist={selectList} />
+	<SideNav user={$user} on:selectlist={selectList} selected={currentList?.id} />
 
 	<Main user={$user} list={currentList} />
 {:else}
