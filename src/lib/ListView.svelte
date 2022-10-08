@@ -97,6 +97,12 @@
 		flex-direction: column;
 		align-items: flex-start;
 		padding: 0;
+		flex-grow: 1;
+		height: 100%;
+		max-height: 100%;
+		overflow-y: auto;
+		max-width: 100%;
+		overflow-x: auto;
 	}
 
 	header {

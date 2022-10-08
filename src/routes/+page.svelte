@@ -31,7 +31,7 @@
 					id: '123',
 					name: 'a list',
 					items: [{ id: '0', name: 'dog' }],
-					days: [{ date: new Date(2022, 9, 7), completed: {} }]
+					days: [{ date: new Date(2022, 9, 3), completed: {} }]
 				}
 			]
 		};
