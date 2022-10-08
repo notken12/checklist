@@ -15,6 +15,11 @@ export type Day = {
   completed: Record<Id, boolean>;
 };
 
+export type DayColumn = {
+  index: number | null;
+  date: Date;
+};
+
 export type List = {
   id: Id;
   name: string;

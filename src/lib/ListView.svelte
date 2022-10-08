@@ -1,9 +1,10 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import Checkbox from './Checkbox.svelte';
+	import ListRow from './ListRow.svelte';
 	import { dataSource } from './stores';
 
-	import { addItemToList, type List, type UserData, type Day } from './types';
+	import { addItemToList, type List, type UserData, type Day, type DayColumn } from './types';
 	import IconButton from './ui/IconButton.svelte';
 
 	export let list: List;
@@ -11,6 +12,7 @@
 	let newItemTitle = '';
 
 	const newItem = async () => {
+		if (newItemTitle.length === 0) return;
 		const updated = addItemToList(user, list.id, {
 			id: list.items.length.toString(),
 			name: newItemTitle
@@ -31,10 +33,6 @@
 
 	let totalDays = getTotalDays();
 
-	type DayColumn = {
-		index: number | null;
-		date: Date;
-	};
 	const getDays = (): DayColumn[] => {
 		const days: DayColumn[] = [];
 		let i = 0;
@@ -55,13 +53,7 @@
 		days = getDays();
 		firstDay;
 		list.days;
-		console.log(days);
 	}
-
-	const getDay = (day: DayColumn): Day => {
-		if (day.index != null) return list.days[day.index];
-		return { date: day.date, completed: {} };
-	};
 
 	let newItemInput: HTMLInputElement;
 
@@ -84,12 +76,7 @@
 					{/each}
 				</tr>
 				{#each list.items as item (item.id)}
-					<tr>
-						<th>{item.name}</th>
-						{#each days as day}
-							<Checkbox {user} {list} {item} day={getDay(day)} />
-						{/each}
-					</tr>
+					<ListRow {user} {list} {item} {days} />
 				{/each}
 				<tr>
 					<th>
@@ -157,6 +144,8 @@
 		outline: none;
 		font-size: 17px;
 		font-weight: 700;
+		padding: 0;
+		margin: 0;
 	}
 
 	.hint {

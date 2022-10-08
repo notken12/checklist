@@ -108,6 +108,7 @@ td {
 	padding: 8px;
 	font-size: 17px;
 	font-weight: normal;
+	outline: none;
 }
 
 table {

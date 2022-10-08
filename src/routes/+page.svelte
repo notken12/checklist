@@ -13,7 +13,8 @@
 		$dataSource.initialized = $dataSource.initialized;
 		$dataSource.subscribe((data) => {
 			$user = data;
-			console.log(data);
+			// console.log(data);
+			console.log('Data source updated');
 		});
 	};
 
