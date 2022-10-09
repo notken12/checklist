@@ -157,6 +157,8 @@
 
 	.day span {
 		writing-mode: vertical-rl;
+		display: block;
+		width: 17px;
 	}
 
 	@media only screen and (max-width: 600px) {
