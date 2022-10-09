@@ -72,7 +72,7 @@
 				<tr>
 					<th />
 					{#each days as day}
-						<th class="day">{day.date.toLocaleString().split(',')[0]}</th>
+						<th class="day"><span>{day.date.toLocaleString().split(',')[0]}</span></th>
 					{/each}
 				</tr>
 				{#each list.items as item (item.id)}
@@ -155,9 +155,8 @@
 		user-select: none;
 	}
 
-	.day {
-		writing-mode: tb;
-		/* writing-mode: vertical-rl; */
+	.day span {
+		writing-mode: vertical-rl;
 	}
 
 	@media only screen and (max-width: 600px) {
