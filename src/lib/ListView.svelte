@@ -79,7 +79,7 @@
 					<ListRow {user} {list} {item} {days} />
 				{/each}
 				<tr>
-					<th>
+					<th class="new-item">
 						<form
 							on:submit={(e) => {
 								e.preventDefault();
@@ -138,13 +138,16 @@
 		flex-grow: 1;
 	}
 
+	.new-item {
+		padding: 0;
+	}
+
 	input {
 		background: none;
 		border: none;
 		outline: none;
 		font-size: 17px;
-		padding: 0;
-		margin: 0;
+		margin: 0 !important;
 	}
 
 	.hint {

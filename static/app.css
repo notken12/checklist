@@ -167,12 +167,14 @@ button:active {
 }
 
 input {
-	padding: 8px;
-	margin: 0;
+	padding: 8px !important;
+	margin: 0 !important;
 	background: var(--base01);
 	border-radius: 6px;
 	border: none;
 	outline: none;
+	line-height: 17px !important;
+	height: 33px;
 }
 
 input:active,
