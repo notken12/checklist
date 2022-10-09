@@ -157,6 +157,7 @@
 	}
 
 	.day {
+		writing-mode: tb;
 		writing-mode: vertical-rl;
 	}
 
