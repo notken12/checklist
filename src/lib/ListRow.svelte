@@ -33,3 +33,6 @@
 		<Checkbox {user} {list} {item} day={getDay(day)} />
 	{/each}
 </tr>
+
+<style>
+</style>

@@ -143,7 +143,6 @@
 		border: none;
 		outline: none;
 		font-size: 17px;
-		font-weight: 700;
 		padding: 0;
 		margin: 0;
 	}
@@ -158,7 +157,7 @@
 
 	.day {
 		writing-mode: tb;
-		writing-mode: vertical-rl;
+		/* writing-mode: vertical-rl; */
 	}
 
 	@media only screen and (max-width: 600px) {

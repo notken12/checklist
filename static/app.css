@@ -110,8 +110,13 @@ th,
 td {
 	padding: 8px;
 	font-size: 17px;
+	line-height: 17px;
 	font-weight: normal;
 	outline: none;
+}
+
+th:focus-within {
+	background: var(--base01);
 }
 
 table {
