@@ -94,12 +94,13 @@
 							/>
 						</form>
 					</th>
-					<td class="hint" colspan="100">
-						{!newItemTitle ? '' : 'Hit <Enter> to create'}
-					</td>
+					<td class="hint" colspan="100" />
 				</tr>
 			</tbody>
 		</table>
+		<div class="hint">
+			{!newItemTitle ? '' : 'Hit <Enter> to create'}
+		</div>
 	</section>
 </section>
 
@@ -132,6 +133,7 @@
 
 	.main {
 		padding: 16px;
+		gap: 8px;
 	}
 
 	h2 {
@@ -146,15 +148,15 @@
 		background: none;
 		border: none;
 		outline: none;
-		font-size: 17px;
 		margin: 0 !important;
+		width: 176px;
 	}
 
 	.hint {
 		opacity: 0.7;
 		font-family: 'Space Mono', monospace;
 		line-height: 17px;
-		font-size: 16px;
+		font-size: 14px;
 		user-select: none;
 	}
 
